@@ -39,3 +39,49 @@ void generate_training_data(double inputs[NUM_TRAINING_EXAMPLES][INPUT_NEURONS],
 ```
 
 `int output_pattern[16]` is where I perscribed my desired 4 bit truth table outputs. It's an arbitrary sequence that requires lots of nonlinearities to fit to. 
+
+---
+
+## Some mathematical background:
+
+This is a graphical visualization of how both of the activation functions used in this network behave:
+
+![cscratchnnV2](SigmoidReLU.png)
+
+The following functions define the ReLU activation function, as well as its derivative (needed for backprop):
+
+```c
+// Activation function: Rectified Linear Unit (ReLU)
+// ReLU returns the input if it's positive, otherwise it returns 0
+double relu(double x) {
+    return (x > 0) ? x : 0;
+}
+
+// Derivative of ReLU function
+// Used in backpropagation to calculate gradients
+double relu_derivative(double x) {
+    return (x > 0) ? 1 : 0;
+}
+```
+
+The ReLU function is basically the closest thing we can get to a plain old `y = x` linear function while still being able to fit to nonlinear problems. When `x > 0`, `y = x`, otherwise `y = 0`. 
+
+For the derivative, `d/dx x` always equals `1`, so we can replicate this function with `return (x > 0) ? 1 : 0`.
+
+
+```c
+// Derivative of sigmoid function
+// Used in backpropagation to calculate gradients
+// This represents the slope of the sigmoid function at a given point
+double sigmoid_derivative(double x) {
+    return x * (1 - x); // Simplified derivative based on the sigmoid output
+    // This simplification works because we're passing in the sigmoid output, not the input
+}
+```
+
+So, why can we say that the derivative of sigmoid(x) is equal to (1 - sigmoid(x))?
+`d/dx s(x) = s(x) * (1 - s(x))`
+
+I have provided a full derivation of this, with hand-drawn comments that I hope are legible. Those strange curvy letters that I use are capital F's:
+
+![cscratchnn](Notebook.jpg)

@@ -66,8 +66,19 @@ double relu_derivative(double x) {
 
 The ReLU function is basically the closest thing we can get to a plain old `y = x` linear function while still being able to fit to nonlinear problems. When `x > 0`, `y = x`, otherwise `y = 0`. 
 
-For the derivative, `d/dx x` always equals `1`, so we can replicate this function with `return (x > 0) ? 1 : 0`.
+How about the Sigmoid function?
 
+```c
+// Activation function: Sigmoid
+// Maps any input to a value between 0 and 1
+double sigmoid(double x) {
+    return 1 / (1 + exp(-x));
+}
+```
+
+See the graph and equation in the image above. As values of x approach infinity, outputs of sigmoid(x) approach 1. As x approaches negative infinity, sigmoid(x) approaches 0. At `x = 0`, sigmoid(x) returns 1/2. `1/(1+e^-0)` = `1/(1+1)` = `1/2`
+
+For its derivative, `d/dx x` always equals `1`, so we can replicate this function with `return (x > 0) ? 1 : 0`.
 
 ```c
 // Derivative of sigmoid function

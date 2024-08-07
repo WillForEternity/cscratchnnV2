@@ -22,12 +22,6 @@ To run:
 ./neuralnetwork
 ```
 
-## Your results should look something like this:
-
-![cscratchnnV2](Output.png)
-
-the outputs that come from either 0 and 0 or 1 and 1 are closer to 0, whereas the inputs 1 and 0 or 0 and 1 produce results closer to 1. It's working. 
-
 In my code, you should see the following:
 
 ```c
@@ -39,6 +33,10 @@ void generate_training_data(double inputs[NUM_TRAINING_EXAMPLES][INPUT_NEURONS],
 ```
 
 `int output_pattern[16]` is where I perscribed my desired 4 bit truth table outputs. It's an arbitrary sequence that requires lots of nonlinearities to fit to. 
+
+## Your results should look something like this:
+
+![cscratchnnV2](Output.png)
 
 ---
 
